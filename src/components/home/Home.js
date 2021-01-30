@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import SupermarketListElement from '../supermarketListElement/SupermarketListElement';
 class Home extends Component {
   state = {
     newItem: '',
@@ -46,15 +46,13 @@ class Home extends Component {
        <input type="text" onChange={this.handleInput} name="newItem" value={this.state.newItem}/>
        <button onClick={this.handleAddItem}>Agregar elemento</button>
        {
-        this.state.supermarketList.map((item,i) => {
-        return (
-          <div key={i}>
-        <p>{item.index}-{item.name}</p>
-        <button onClick={() => this.handleDeleteItem(item, i)}>eliminar</button>
-          </div>
-        )
-       })
-     }
+        this.state.supermarketList.map((item,i) => 
+        <SupermarketListElement
+          key={i}
+          item={item}
+          handleDeleteItem={this.handleDeleteItem}
+        />
+    )}
     </div>
     );
   }
